@@ -285,7 +285,7 @@ export default function LocalityInsights() {
               className={cn(
                 "cursor-pointer rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-300",
                 activeLocality === loc.id
-                  ? "bg-dwelling-charcoal shadow-lg shadow-dwelling-charcoal/20 dark:bg-dwelling-gold dark:text-dwelling-charcoal dark:text-white dark:shadow-dwelling-gold/20"
+                  ? "bg-dwelling-charcoal shadow-lg shadow-dwelling-charcoal/20 dark:bg-dwelling-gold dark:text-white dark:shadow-dwelling-gold/20"
                   : "border border-dwelling-stone bg-white text-dwelling-slate hover:border-dwelling-charcoal hover:text-dwelling-charcoal dark:border-white/10 dark:bg-white/5 dark:text-white/60 dark:hover:border-dwelling-gold dark:hover:text-white"
               )}
             >
@@ -294,7 +294,7 @@ export default function LocalityInsights() {
           ))}
         </motion.div>
 
-        <Tabs defaultValue="trends" className="w-full">
+        <Tabs defaultValue="trends" className="w-full flex flex-col lg:flex-row">
           <motion.div
             {...motionProps}
             variants={{
