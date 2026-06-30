@@ -1,0 +1,272 @@
+@import "tailwindcss";
+
+/* Font imports (keep at top) */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap");
+
+.t {
+  color: #838383;
+}
+
+@theme {
+  /* Font families */
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Custom colors (dwelling palette) */
+  --color-dwelling-cream: #faf9f6;
+  --color-dwelling-sand: #f5f0e8;
+  --color-dwelling-stone: #e8e4de;
+  --color-dwelling-charcoal: #838383;
+  --color-dwelling-warm: #2d2a26;
+  --color-dwelling-gold: #c4a35a;
+  --color-dwelling-sage: #7b8b6f;
+  --color-dwelling-rose: #b8a09a;
+  --color-dwelling-slate: #6b7280;
+  
+
+  /* Semantic colors (mapped to your HSL variables) */
+  --color-background: hsl(40 20% 97%);
+  --color-foreground: hsl(30 10% 10%);
+  --color-card: hsl(40 20% 97%);
+  --color-card-foreground: hsl(30 10% 10%);
+  --color-popover: hsl(40 20% 97%);
+  --color-popover-foreground: hsl(30 10% 10%);
+  --color-primary: hsl(30 10% 10%);
+  --color-primary-foreground: hsl(40 20% 97%);
+  --color-secondary: hsl(35 15% 92%);
+  --color-secondary-foreground: hsl(30 10% 10%);
+  --color-muted: hsl(35 15% 92%);
+  --color-muted-foreground: hsl(30 5% 45%);
+  --color-accent: hsl(42 40% 55%);
+  --color-accent-foreground: hsl(40 20% 97%);
+  --color-destructive: hsl(0 84% 60%);
+  --color-destructive-foreground: hsl(0 0% 98%);
+  --color-border: hsl(35 10% 85%);
+  --color-input: hsl(35 10% 85%);
+  --color-ring: hsl(42 40% 55%);
+
+  /* Border radius */
+  --radius-lg: 0.75rem;
+  --radius-md: calc(0.75rem - 2px);
+  --radius-sm: calc(0.75rem - 4px);
+
+  /* Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-fade-in-up: fade-in-up 0.6s ease-out forwards;
+  --animate-slide-in-right: slide-in-right 0.6s ease-out forwards;
+  --animate-scale-in: scale-in 0.4s ease-out forwards;
+}
+
+/* Keyframes (native in v4) */
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Dark mode via media query or class */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-dwelling-cream);
+    color: var(--color-dwelling-warm);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  ::selection {
+    background-color: color-mix(
+      in srgb,
+      var(--color-dwelling-gold) 30%,
+      transparent
+    );
+    color: var(--color-dwelling-warm);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-dwelling-gold);
+    outline-offset: 2px;
+  }
+}
+
+/* Dark mode overrides */
+.dark {
+  --color-background: hsl(30 10% 8%);
+  --color-foreground: hsl(40 20% 97%);
+  --color-card: hsl(30 10% 10%);
+  --color-card-foreground: hsl(40 20% 97%);
+  --color-popover: hsl(30 10% 10%);
+  --color-popover-foreground: hsl(40 20% 97%);
+  --color-primary: hsl(40 20% 97%);
+  --color-primary-foreground: hsl(30 10% 10%);
+  --color-secondary: hsl(30 8% 18%);
+  --color-secondary-foreground: hsl(40 20% 97%);
+  --color-muted: hsl(30 8% 18%);
+  --color-muted-foreground: hsl(35 10% 60%);
+  --color-accent: hsl(42 40% 55%);
+  --color-accent-foreground: hsl(30 10% 10%);
+  --color-destructive: hsl(0 62% 50%);
+  --color-destructive-foreground: hsl(0 0% 98%);
+  --color-border: hsl(30 8% 20%);
+  --color-input: hsl(30 8% 20%);
+  --color-ring: hsl(42 40% 55%);
+}
+
+/* Utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .glass-card {
+    background-color: color-mix(in srgb, white 80%, transparent);
+    backdrop-filter: blur(24px);
+    border: 1px solid color-mix(in srgb, white 50%, transparent);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  }
+
+  .dark .glass-card {
+    background-color: color-mix(in srgb, black 40%, transparent);
+    border-color: color-mix(in srgb, white 10%, transparent);
+  }
+
+  .glass-card-dark {
+    background-color: color-mix(in srgb, black 40%, transparent);
+    backdrop-filter: blur(24px);
+    border: 1px solid color-mix(in srgb, white 10%, transparent);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  }
+}
+
+/* Components */
+@layer components {
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--color-dwelling-gold);
+    margin-bottom: 1rem;
+  }
+
+  .dark .section-label {
+    /* You'd need a light gold variant or use color-mix */
+    color: color-mix(in srgb, var(--color-dwelling-gold) 80%, white);
+  }
+
+  .card-premium {
+    background-color: white;
+    border-radius: 1rem;
+    border: 1px solid
+      color-mix(in srgb, var(--color-dwelling-stone) 50%, transparent);
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark .card-premium {
+    background-color: var(--color-dwelling-charcoal);
+    border-color: color-mix(in srgb, white 10%, transparent);
+  }
+
+  .card-premium:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0 20px 25px -5px
+      color-mix(in srgb, var(--color-dwelling-charcoal) 10%, transparent);
+  }
+
+  .dark .card-premium:hover {
+    box-shadow: 0 20px 25px -5px
+      color-mix(in srgb, var(--color-dwelling-gold) 10%, transparent);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  top: -2.5rem;
+  left: 1rem;
+  background-color: var(--color-dwelling-charcoal);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  z-index: 100;
+  transition: all 0.3s;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
