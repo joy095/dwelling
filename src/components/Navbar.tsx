@@ -134,14 +134,6 @@ export default function Navbar({ scrollY }: NavbarProps) {
           {/* Mobile Toggle */}
           <div className="flex items-center gap-2 md:hidden">
             <motion.button
-              onClick={cycleTheme}
-              whileTap={{ scale: 0.9 }}
-              className="rounded-lg p-2 text-dwelling-warm transition-colors hover:bg-dwelling-sand dark:text-white/60 dark:hover:bg-white/10"
-              aria-label={`Theme: ${theme}`}
-            >
-              <ThemeIcon className="h-5 w-5" />
-            </motion.button>
-            <motion.button
               onClick={() => setMobileOpen(!mobileOpen)}
               whileTap={{ scale: 0.9 }}
               className="rounded-lg p-2 text-dwelling-warm transition-colors hover:bg-dwelling-sand dark:text-white dark:hover:bg-white/10"
